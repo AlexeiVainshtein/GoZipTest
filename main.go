@@ -44,7 +44,7 @@ func main() {
 		return
 	}
 	Test.Print(source)
-	var list []string
+	//var list []string
 	sourceInfo, err := os.Stat(source)
 	if err != nil {
 		panic(err)
@@ -76,7 +76,10 @@ func main() {
 			if err != nil {
 				return err
 			}
-			header.Name = path.Join(baseDir, filepath.ToSlash(name))
+			fmt.Println("The name:", name)
+			pathi := path.Join(baseDir, filepath.ToSlash(name))
+			fmt.Println("Pathi:", pathi)
+			header.Name = pathi
 		}
 
 		if info.IsDir() {
@@ -101,6 +104,7 @@ func main() {
 		}
 
 		if header.Mode().IsRegular() {
+			fmt.Println("the fpath:", fpath)
 			file, err := os.Open(fpath)
 			if err != nil {
 				return fmt.Errorf("%s: opening: %v", fpath, err)
